@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "847086164669",
+    "project_id": "app-tour-5b1d1",
+    "storage_bucket": "app-tour-5b1d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847086164669:android:06742a7268193e984a75d4",
+        "android_client_info": {
+          "package_name": "com.D_movil_JYMN.mis_libros"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847086164669-2u8ib9efuj4sp0ur2tln68hqfs7ir69g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD68eMXbUy4XaNy5oMM4rG4xyZc9_9z40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847086164669-2u8ib9efuj4sp0ur2tln68hqfs7ir69g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "847086164669-5h1fgfrmfeocggu2hc2sr2kii6ffsmel.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.DmovilJYMN.misLibros"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
