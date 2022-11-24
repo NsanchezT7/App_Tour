@@ -16,9 +16,6 @@ class _LoginPageState extends State<LoginPage> {
   final _email= TextEditingController();
   final _password= TextEditingController();
 
-  final FirebaseApi _firebaseApi= FirebaseApi();
-
-
   @override
   void initState(){
     //_getUser();
