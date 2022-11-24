@@ -61,14 +61,9 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void _saveUser(User user) async {
-
-
-  }
-
-  void _registerUser(User user) async {
-    final SharedPreferences prefs= await SharedPreferences.getInstance();
-    await prefs.setString("user" , jsonEncode(user));
+  void saveUser(User user) async {
+    SharedPreferences prefs= await SharedPreferences.getInstance();
+    prefs.setString("user" , jsonEncode(user));
   }
 
   void _onRegisterButtonClicked() {
@@ -83,7 +78,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
         var user = User("",
             _name.text, _email.text, _password.text, genre, _date);
-        _registerUser(user);
+        saveUser(user);
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginPage()));
       } else {
         _showMsg("las contraseñas deben de ser iguales");
       }
