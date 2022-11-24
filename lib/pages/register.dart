@@ -63,7 +63,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void saveUser(User user) async {
     SharedPreferences prefs= await SharedPreferences.getInstance();
-    prefs.setString("user" , jsonEncode(user));
+    prefs.setString("user", jsonEncode(user));
   }
 
   void _onRegisterButtonClicked() {
@@ -76,7 +76,7 @@ class _RegisterPageState extends State<RegisterPage> {
           genre = "femenino";
         }
 
-        var user = User("",
+        var user = User(
             _name.text, _email.text, _password.text, genre, _date);
         saveUser(user);
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> LoginPage()));

@@ -1,8 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mis_libros/pages/register.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../models/user.dart';
 import 'home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,11 +16,14 @@ class _LoginPageState extends State<LoginPage> {
   final _email= TextEditingController();
   final _password= TextEditingController();
 
+  User userLoad = User.Empty();
+
   @override
   void initState(){
-    //_getUser();
+    _getUser();
     super.initState();
   }
+
 
   void _showMsg(String msg){
     final scaffold =ScaffoldMessenger.of(context);
@@ -31,21 +34,21 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  void _validateuser() async {
-    if (_email.text.isEmpty || _password.text.isEmpty) {
-      _showMsg("debe digitar el correo y la contraseña");
-    }else{
-      var result = await _firebaseApi.logInUser(_email.text, _password.text);
-      String msg ="";
-      if (result=="invalid-email"){msg="el correo electronico esta mal escrito ";}
-      else if (result=="wrong-password"){msg="correo o contraseña invalido";}
-      else if (result=="network-request-failed"){msg="Revise su conexion a internet";}
-      else{
-        msg="Bienvenido";
+
+  _getUser() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    Map<String, dynamic> userMap= jsonDecode(prefs.getString("user")!);
+    userLoad = User.fromJson(userMap);
+  }
+
+  void _validateuser(){
+    if (_email.text == userLoad.email && _password.text == userLoad.password) {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const HomePage()));
+    }else{
+      _showMsg("Correo o contraseña incorrecto");
+
       }
-      _showMsg(msg);
-    }
+
   }
 
   @override
