@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mis_libros/pages/register.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../repository/firebase_api.dart';
 import 'home.dart';
 
 class LoginPage extends StatefulWidget {

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mis_libros/models/user.dart';
 import 'package:mis_libros/pages/login.dart';
-import 'package:mis_libros/repository/firebase_api.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,8 +15,6 @@ class RegisterPage extends StatefulWidget {
 enum Genre { masculino, famenino }
 
 class _RegisterPageState extends State<RegisterPage> {
-
-  final FirebaseApi _firebaseApi= FirebaseApi();
 
   final _name = TextEditingController();
   final _email = TextEditingController();
@@ -65,28 +62,13 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   void _saveUser(User user) async {
-    var result = await _firebaseApi.crateUser(user);
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+
 
   }
 
   void _registerUser(User user) async {
-    //final SharedPreferences prefs= await SharedPreferences.getInstance();
-    //await prefs.setString("user" , jsonEncode(user));
-
-    var result = await _firebaseApi.registerUser(user.email, user.password);
-    String msg  ="";
-    if (result=="invalid-email"){msg="el correo electronico esta mal escrito ";}
-    else if (result=="weak-password"){msg="la contraseña debe tener minimo 6 digitos";}
-    else if (result=="email-already-in-use"){msg="Ya existe una cuenta con ese correo electronico";}
-    else if (result=="network-request-failed"){msg="Revise su conexion a internet";}
-    else {msg="Usuario registrado con exito";
-      user.uid=result;
-      _saveUser(user);
-    }
-    _showMsg(msg);
-
-
+    final SharedPreferences prefs= await SharedPreferences.getInstance();
+    await prefs.setString("user" , jsonEncode(user));
   }
 
   void _onRegisterButtonClicked() {
