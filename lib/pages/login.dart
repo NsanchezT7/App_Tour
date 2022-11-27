@@ -59,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
         child: Center(
+          child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -100,7 +101,9 @@ class _LoginPageState extends State<LoginPage> {
                 child: const Text('Registrese'),
               ),
             ],
-          ),),
+          ),
+          ),
+    ),
       ),
     );
   }

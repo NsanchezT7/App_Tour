@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mis_libros/pages/login.dart';
 import 'package:mis_libros/pages/new_sitie.dart';
+import 'package:mis_libros/pages/search_sitie.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-enum Menu {logout}
+enum Menu {logout,search}
 
 class _HomePageState extends State<HomePage> {
   @override
@@ -21,19 +22,24 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Mis sitios"),
         actions: [
-          PopupMenuButton(
+            PopupMenuButton(
               onSelected: (Menu item){
                 setState(() {
                   if(item == Menu.logout){
                     FirebaseAuth.instance.signOut();
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const LoginPage()));
+                  }else if(item ==Menu.search){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=> const SearchSitiePage()));
                   }
                 });
               },
               itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
                 const PopupMenuItem(
+                  value: Menu.search, child: Text('Buscar sitio'),
+                ),
+                const PopupMenuItem(
                   value: Menu.logout, child: Text('Cerra sesion'),
-                )
+                ),
               ]
             ),
         ],

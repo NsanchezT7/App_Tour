@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:mis_libros/firebase_options.dart';
 import 'package:mis_libros/pages/home.dart';
+import 'package:mis_libros/pages/search_sitie.dart';
 import 'package:mis_libros/pages/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 
